@@ -1,25 +1,33 @@
-import logo from './logo.svg';
+import React from 'react';
+import Home from './containers/Home';
 import './App.css';
+import triviaData from './Apprentice_TandemFor400_Data.json';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    trivia: triviaData
+  }
+
+  // componentDidMount() {
+  //   this.setState({
+  //     trivia: triviaData
+  //   })
+  // }
+
+  render(){
+    console.log(this.state.trivia)
+    // const data = () => JSON.parse(JSON.stringify(trivaData));  
+    return (
+      <React.Fragment>
+        <div className="App">
+          <header className="App-header">
+            <Home trivia={this.state.trivia}/>
+            <h1>Tandem Trivia</h1>
+          </header>
+        </div>
+      </React.Fragment>
+    );
+  }
 }
 
 export default App;
