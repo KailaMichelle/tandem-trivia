@@ -1,5 +1,5 @@
 import React from 'react';
-import Trivia from './components/Trivia';
+import Trivia from './containers/TriviaContainer';
 import './App.css';
 
 class App extends React.Component {
@@ -9,7 +9,7 @@ class App extends React.Component {
       <React.Fragment>
         <div className="App">
           <header className="App-header">
-            <h1>Tandem Trivia</h1>
+            {/* <h1>Tandem Trivia</h1> */}
             <Trivia />
           </header>
         </div>
