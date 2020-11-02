@@ -1,6 +1,8 @@
 # Tandem Trivia 
 ## Application for Tandem Apprenticeship 
 
+[Play Tandem Trivia!](https://tandemtrivia-moreno.herokuapp.com/)
+
 ## User Story
 
 Build a Trivia Application
