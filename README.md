@@ -1,9 +1,9 @@
 # Tandem Trivia 
-## Apprentice Application App 
+## Application for Tandem Apprenticeship 
 
 ## User Story
 
-Trivia Application
+Build a Trivia Application
 
 The user has the ability to: 
 - View questions one at a time with multiple choice answers
