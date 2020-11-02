@@ -6,8 +6,8 @@ function GameOver(props) {
         return(
             <div>
                 <h1>Game Over!</h1> 
-                <p>You scored: {score}</p>
-                <button onClick={() => window.location.reload(false)}>Play Again?</button>
+                <h3>You scored: {score}</h3>
+                <button className="btn btn-lg" onClick={() => window.location.reload(false)}>Play Again?</button>
             </div>
         );
     }

@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import Question from '../components/Question.js';
 import StartGame from '../components/StartGame';
 import GameOver from '../components/GameOver';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Json Import
 import triviaData from '../json/Apprentice_TandemFor400_Data.json';
 
+// CSS
 import './Trivia.css';
 
 class Trivia extends Component {
@@ -30,7 +34,6 @@ class Trivia extends Component {
             num: this.state.questionarr[0],
             gameStarted: true,
         })
-        // console.log(this.state)
         this.nextQuestion();
     }
 
@@ -42,7 +45,6 @@ class Trivia extends Component {
                 gameOver: true,
             })
         }
-        // console.log(this.state.currentIndex);
         else {
             let array = triviaData[this.state.questionarr[nextIndex]].incorrect;
             array.push(triviaData[this.state.questionarr[nextIndex]].correct);
@@ -52,9 +54,7 @@ class Trivia extends Component {
                 question: triviaData[this.state.questionarr[nextIndex]].question,
                 options: array,
             })
-            // this.setQuestion();
             console.log(this.state)
-            // console.log(this.state.questionarr)
         }
     }
 

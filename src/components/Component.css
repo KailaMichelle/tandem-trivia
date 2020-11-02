@@ -1,0 +1,17 @@
+.options {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.options li {
+    padding: 20px;
+}
+
+.btn {
+    background-color:white !important;
+    border: none !important;
+    color: #0EA7AF !important;
+}
+

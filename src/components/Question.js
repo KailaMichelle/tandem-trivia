@@ -6,6 +6,9 @@ import Button from 'react-bootstrap/Button';
 // JSON import 
 import triviaData from '../json/Apprentice_TandemFor400_Data.json';
 
+// CSS
+import './Component.css';
+
 function Question(props) {
     const { question, options, num, nextQuestion, score, updateScore } = props;
 
@@ -26,7 +29,9 @@ function Question(props) {
     const optionList = random.map((option) => {
         // console.log(random)
         return (
-        <button onClick={handleSubmit}>{option}</button>
+        <li>
+            <Button className="btn btn-lg" onClick={handleSubmit}>{option}</Button>
+        </li>
         )
     });
 
@@ -49,9 +54,11 @@ function Question(props) {
         return(
             <div>
                 <h1>Score: {score}</h1>
-                <h1>{question}</h1>
+                <h1 className="font">{question}</h1>
+                <ul className="options">
                 {optionList}
-                <Button onClick={nextQuestion}>Next Question</Button>
+                </ul>
+                <Button className="btn btn-lg" onClick={nextQuestion}>Next Question</Button>
             </div>
         );
     }
