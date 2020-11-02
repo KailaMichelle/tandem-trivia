@@ -2,7 +2,6 @@
     list-style: none;
     display: flex;
     justify-content: center;
-    /* align-items: center; */
 }
 
 .options li {
@@ -15,11 +14,9 @@
     color: #0EA7AF !important;
 }
 
-.correct {
-    background-color: teal !important;
+.btn:hover {
+    background-color:#0EA7AF!important;
+    color: white !important;
 }
 
-.incorrect {
-    background-color: red !important;
-}
 

@@ -7,9 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // Json Import
 import triviaData from '../json/Apprentice_TandemFor400_Data.json';
 
-// CSS
-import './Trivia.css';
-
 class Trivia extends Component {
     state = {
         gameStarted: false,
@@ -40,10 +37,6 @@ class Trivia extends Component {
 
     nextQuestion = () => {
         let nextIndex = this.state.currentIndex + 1
-        let next = document.getElementById('next');
-        console.log(next)
-        let buttons = document.getElementsByClassName('buttons');
-        console.log(buttons)
         if(nextIndex == 11){
             this.setState({
                 gameOver: true,

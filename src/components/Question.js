@@ -27,10 +27,9 @@ function Question(props) {
     const random = randomize(options);
 
     const optionList = random.map((option) => {
-        // console.log(random)
         return (
         <li>
-            <Button className="btn btn-lg buttons" onClick={handleSubmit}>{option}</Button>
+            <Button className="btn btn-lg" onClick={handleSubmit}>{option}</Button>
         </li>
         )
     });
@@ -38,20 +37,14 @@ function Question(props) {
     function handleSubmit(e){
         let question = triviaData[num];
         let correct = question.correct
-        // let next = document.getElementById('next');
-        // let buttons = document.getElementsByClassName('buttons');
-        // console.log(buttons)
         if(e.target.innerHTML == correct){
             updateScore();
             window.alert('Correct Answer!')
             nextQuestion();
-            // e.target.classList.add('correct')
-            // console.log(next)
             console.log('correct')
         } else {
             window.alert(`We're sorry, that was an incorrect answer. The correct answer was ${correct}.`)
             nextQuestion();
-            // e.target.classList.add('incorrect')
             console.log('incorrect')
         }
     }
