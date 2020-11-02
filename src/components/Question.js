@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 // Bootstrap styles
 import Button from 'react-bootstrap/Button';
@@ -30,7 +30,7 @@ function Question(props) {
         // console.log(random)
         return (
         <li>
-            <Button className="btn btn-lg" onClick={handleSubmit}>{option}</Button>
+            <Button className="btn btn-lg buttons" onClick={handleSubmit}>{option}</Button>
         </li>
         )
     });
@@ -38,13 +38,20 @@ function Question(props) {
     function handleSubmit(e){
         let question = triviaData[num];
         let correct = question.correct
-        console.log(correct)
+        // let next = document.getElementById('next');
+        // let buttons = document.getElementsByClassName('buttons');
+        // console.log(buttons)
         if(e.target.innerHTML == correct){
             updateScore();
+            window.alert('Correct Answer!')
             nextQuestion();
+            // e.target.classList.add('correct')
+            // console.log(next)
             console.log('correct')
         } else {
+            window.alert(`We're sorry, that was an incorrect answer. The correct answer was ${correct}.`)
             nextQuestion();
+            // e.target.classList.add('incorrect')
             console.log('incorrect')
         }
     }
@@ -58,7 +65,7 @@ function Question(props) {
                 <ul className="options">
                 {optionList}
                 </ul>
-                <Button className="btn btn-lg" onClick={nextQuestion}>Next Question</Button>
+                <Button className="btn btn-lg" onClick={nextQuestion} id="next">Next Question</Button>
             </div>
         );
     }

@@ -15,3 +15,11 @@
     color: #0EA7AF !important;
 }
 
+.correct {
+    background-color: teal !important;
+}
+
+.incorrect {
+    background-color: red !important;
+}
+
