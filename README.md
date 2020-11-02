@@ -21,11 +21,11 @@ Criteria:
     - git clone https://github.com/KailaMichelle/tandem-trivia
     - npm i
     - npm start 
-This will clone the project down and install dependencies needed and start your server. 
+- This will clone the project down and install dependencies needed and start your server. 
 
 ### Technologies 
-React.js
-JavaScript
-HTML5
-CSS3
-Bootstrap
+React.js <br>
+JavaScript <br>
+HTML5 <br>
+CSS3 <br>
+Bootstrap <br>
