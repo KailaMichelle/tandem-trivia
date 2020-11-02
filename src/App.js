@@ -8,8 +8,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <div className="App">
-          <header className="App-header">
-            {/* <h1>Tandem Trivia</h1> */}
+          <header className="Content">
             <Trivia />
           </header>
         </div>

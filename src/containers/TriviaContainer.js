@@ -1,49 +1,67 @@
 import React, { Component } from 'react';
 import Question from '../components/Question.js';
+import StartGame from '../components/StartGame';
+import GameOver from '../components/GameOver';
 import triviaData from '../json/Apprentice_TandemFor400_Data.json';
+
+import './Trivia.css';
 
 class Trivia extends Component {
     state = {
         gameStarted: false,
-        // gameOver: false,
+        gameOver: false,
         num: 0,
+        questionarr: [],
+        currentIndex: -1,
         question: '',
         options: [],
         score: 0,
         answer: null,
     }
 
-    componentDidMount() {
-        let array = triviaData[this.state.num].incorrect
-        array.push(triviaData[this.state.num].correct)
-        this.setState({
-            question: triviaData[this.state.num].question,
-            options: array,
-        })
-        // this.setQuestion();
-    }
-
-    setQuestion = async () => {
-        let array = triviaData[this.state.num].incorrect;
-        array.push(triviaData[this.state.num].correct);
-        this.setState({
-            question: triviaData[this.state.num].question,
-            options: array,
-        })
-    }
-
     startGame = () => {
+        while(this.state.questionarr.length < 12){
+            let randomindex = Math.floor(Math.random()*(21 - 1) + 1)
+            if(this.state.questionarr.indexOf(randomindex) == -1){
+                this.state.questionarr.push( randomindex );
+            }
+        }
         this.setState({
+            num: this.state.questionarr[0],
             gameStarted: true,
         })
+        // console.log(this.state)
+        this.nextQuestion();
     }
 
+
     nextQuestion = () => {
+        let nextIndex = this.state.currentIndex + 1
+        if(nextIndex == 11){
+            this.setState({
+                gameOver: true,
+            })
+        }
+        // console.log(this.state.currentIndex);
+        else {
+            let array = triviaData[this.state.questionarr[nextIndex]].incorrect;
+            array.push(triviaData[this.state.questionarr[nextIndex]].correct);
+            this.setState({
+                num: this.state.questionarr[nextIndex],
+                currentIndex: nextIndex,
+                question: triviaData[this.state.questionarr[nextIndex]].question,
+                options: array,
+            })
+            // this.setQuestion();
+            console.log(this.state)
+            // console.log(this.state.questionarr)
+        }
+    }
+
+        updateScore = () => {
         this.setState({
-            num: this.state.num + 1,
+            score: this.state.score + 1,
         })
-        this.setQuestion();
-        console.log('in next')
     }
 
 
@@ -51,12 +69,21 @@ class Trivia extends Component {
     render(){
         return(
             <div>
-                {!this.state.gameStarted && (
-                    <button onClick={this.startGame}>Start Game</button>
+                {!this.state.gameStarted && !this.state.gameOver && (
+                    <StartGame startGame={this.startGame} />
                 )}
-                {this.state.gameStarted && (
-                    <Question question={this.state.question} options={this.state.options} nextQuestion={this.nextQuestion}/>
+                {this.state.gameStarted && !this.state.gameOver &&(
+                    <Question 
+                    num={this.state.num} 
+                    question={this.state.question} 
+                    options={this.state.options} 
+                    nextQuestion={this.nextQuestion} 
+                    score={this.state.score} 
+                    updateScore={this.updateScore}/>
                     )}
+                {this.state.gameOver && (
+                    <GameOver score={this.state.score}/>
+                )}
             </div>
         );
     }
