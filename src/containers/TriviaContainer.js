@@ -25,7 +25,7 @@ class Trivia extends Component {
     }
 
     startGame = () => {
-        while(this.state.questionarr.length < 12){
+        while(this.state.questionarr.length < 11){
             let randomindex = Math.floor(Math.random()*(21 - 1) + 1)
             if(this.state.questionarr.indexOf(randomindex) == -1){
                 this.state.questionarr.push( randomindex );
@@ -42,7 +42,7 @@ class Trivia extends Component {
 
     nextQuestion = () => {
         let nextIndex = this.state.currentIndex + 1
-        if(nextIndex == 11){
+        if(nextIndex == 10){
             this.setState({
                 gameOver: true,
             })
