@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Question from '../components/Question.js';
 import StartGame from '../components/StartGame';
 import GameOver from '../components/GameOver';
+
+// Bootstrap 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Json Import
@@ -18,6 +20,8 @@ class Trivia extends Component {
         options: [],
         score: 0,
         answer: null,
+        buttonDisabled: false,
+        questionDisabled: false,
     }
 
     startGame = () => {
@@ -30,6 +34,7 @@ class Trivia extends Component {
         this.setState({
             num: this.state.questionarr[0],
             gameStarted: true,
+            buttonDisabled: true,
         })
         this.nextQuestion();
     }
@@ -46,6 +51,8 @@ class Trivia extends Component {
             let array = triviaData[this.state.questionarr[nextIndex]].incorrect;
             array.push(triviaData[this.state.questionarr[nextIndex]].correct);
             this.setState({
+                buttonDisabled: true,
+                questionDisabled: false,
                 num: this.state.questionarr[nextIndex],
                 currentIndex: nextIndex,
                 question: triviaData[this.state.questionarr[nextIndex]].question,
@@ -55,9 +62,22 @@ class Trivia extends Component {
         }
     }
 
-        updateScore = () => {
+    updateScore = () => {
+    this.setState({
+        score: this.state.score + 1,
+    })
+    }
+
+    button = () => {
         this.setState({
-            score: this.state.score + 1,
+            buttonDisabled: false,
+            questionDisabled: true,
+        })
+    }
+
+    disable = () => {
+        this.setState({
+            questionDisabled: true,
         })
     }
 
@@ -76,7 +96,10 @@ class Trivia extends Component {
                     options={this.state.options} 
                     nextQuestion={this.nextQuestion} 
                     score={this.state.score} 
-                    updateScore={this.updateScore}/>
+                    updateScore={this.updateScore}
+                    button={this.button}
+                    buttonDisabled={this.state.buttonDisabled}
+                    questionDisabled={this.state.questionDisabled}/>
                     )}
                 {this.state.gameOver && (
                     <GameOver score={this.state.score}/>

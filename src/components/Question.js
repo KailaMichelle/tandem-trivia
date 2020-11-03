@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 // Bootstrap styles
 import Button from 'react-bootstrap/Button';
@@ -9,10 +9,9 @@ import triviaData from '../json/Apprentice_TandemFor400_Data.json';
 // CSS
 import './Component.css';
 
-function Question(props) {
-    const { question, options, num, nextQuestion, score, updateScore } = props;
-
-    function randomize(array) {
+class Question extends Component {
+    
+    randomize = (array) => {
         let i = array.length, j, k;
         while (0 !== i) {
             k = Math.floor(Math.random() * i);
@@ -24,43 +23,42 @@ function Question(props) {
         return array;
     }
 
-    const random = randomize(options);
-
-    const optionList = random.map((option) => {
-        return (
-        <li>
-            <Button className="btn btn-lg" onClick={handleSubmit}>{option}</Button>
-        </li>
-        )
-    });
-
-    function handleSubmit(e){
-        let question = triviaData[num];
+    handleSubmit = (e) => {
+        let question = triviaData[this.props.num];
         let correct = question.correct
         if(e.target.innerHTML == correct){
-            updateScore();
+            this.props.updateScore();
             window.alert('Correct Answer!')
-            nextQuestion();
-            console.log('correct')
+            this.props.button();
         } else {
             window.alert(`We're sorry, that was an incorrect answer. The correct answer was ${correct}.`)
-            nextQuestion();
+            this.props.button();
             console.log('incorrect')
         }
     }
 
 
+    render(){
+        const { question, options, nextQuestion, score } = this.props;
+        const random = this.randomize(options);
+
+        const optionList = random.map((option) => {
+            return (
+                <Button className="btn btn-lg" onClick={this.handleSubmit} disabled={this.props.questionDisabled}>{option}</Button>
+            )
+        });
 
         return(
-            <div>
+            <div className="container">
                 <h1>Score: {score}</h1>
                 <h1 className="font">{question}</h1>
-                <ul className="options">
-                {optionList}
-                </ul>
-                <Button className="btn btn-lg" onClick={nextQuestion} id="next">Next Question</Button>
+                <div className="options">
+                    {optionList}
+                </div>
+                <Button className="btn btn-lg" onClick={nextQuestion} disabled={this.props.buttonDisabled}>Next Question</Button>
             </div>
         );
     }
+}
 
 export default Question;
